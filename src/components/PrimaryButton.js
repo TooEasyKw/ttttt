@@ -12,7 +12,7 @@ const PrimaryButton = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`back-ground rounded-[12px] px-[26px] py-[18px] text-[18px] text-white
+      className={`back-ground rounded-[12px] px-[26px] py-[18px] text-[18px] text-white w-full
         flex justify-center items-center
         ${className}
         ${disabled && "opacity-50 cursor-not-allowed"}

@@ -38,6 +38,12 @@ const T = {
   REGISTER_REGISTER_BUTTON: "REGISTER_REGISTER_BUTTON",
   REGISTER_ALREADY_HAVE_ACCOUNT: "REGISTER_ALREADY_HAVE_ACCOUNT",
   REHISTER_LOGIN_BUTTON: "REHISTER_LOGIN_BUTTON",
+
+  // HOME PAGE
+  HOME_WELCOME: "HOME_WELCOME",
+  HOME_LOGIN: "HOME_LOGIN",
+  HOME_REGISTER: "HOME_REGISTER",
+  HOME_SANAD: "HOME_SANAD",
   // Add more keys as needed
 };
 
@@ -176,6 +182,23 @@ const local = {
   [T.REGISTER_PASSWORD_UNMATCHED]: {
     AR: "كلمتا المرور غير متطابقتين",
     EN: "Passwords do not match",
+  },
+  // HOME
+  [T.HOME_WELCOME]: {
+    AR: "مرحبًا",
+    EN: "Welcome",
+  },
+  [T.HOME_LOGIN]: {
+    AR: "تسجيل الدخول",
+    EN: "Log In",
+  },
+  [T.HOME_REGISTER]: {
+    AR: "تسجيل",
+    EN: "Register",
+  },
+  [T.HOME_SANAD]: {
+    AR: "إلى سند بس قدها",
+    EN: "TO SANAD BS GADHA",
   },
 };
 
