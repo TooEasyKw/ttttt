@@ -14,6 +14,7 @@ const signUp = async (organizationInfo) => {
 
 // Sign In
 const signIn = async (usernameOrEmail, password, remeberMe) => {
+  console.log("DONE");
   const { data } = await instance.post("/organization/signin", {
     email: usernameOrEmail,
     password,
@@ -21,6 +22,7 @@ const signIn = async (usernameOrEmail, password, remeberMe) => {
   if (data.token && remeberMe) {
     storeToken(data.token);
   }
+  console.log("DONE");
   return data;
 };
 

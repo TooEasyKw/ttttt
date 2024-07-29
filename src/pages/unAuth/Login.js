@@ -1,37 +1,48 @@
-import React, { useState } from "react";
-import Input from "../components/Input";
-import Logo from "../components/login/Logo";
-import WelcomeText from "../components/login/WelcomeText";
-import { useTranslation } from "../context/LanguageProvider";
-import { T } from "../translate";
-import LinkButton from "../components/LinkButton";
-import ToggleCheckBox from "../components/ToggleCheckBox";
-import PrimaryButton from "../components/PrimaryButton";
-import SecondaryButton from "../components/SecondaryButton";
-import MailIcon from "../svgs/Email";
-import PasswordSVG from "../svgs/PasswordSVG";
-import EyeSVG from "../svgs/EyeSVG";
-import GoogleSVG from "../svgs/GoogleSVG";
-import AppleSVG from "../svgs/AppleSVG";
-import EyeOpenSVG from "../svgs/EyeOpenSVG";
+import React, { useState, useContext } from "react";
+import Input from "../../components/Input";
+import Logo from "../../components/login/Logo";
+import WelcomeText from "../../components/login/WelcomeText";
+import { useTranslation } from "../../context/LanguageProvider";
+import { T } from "../../translate";
+import LinkButton from "../../components/LinkButton";
+import ToggleCheckBox from "../../components/ToggleCheckBox";
+import PrimaryButton from "../../components/PrimaryButton";
+import SecondaryButton from "../../components/SecondaryButton";
+import MailIcon from "../../svgs/Email";
+import PasswordSVG from "../../svgs/PasswordSVG";
+import EyeSVG from "../../svgs/EyeSVG";
+import GoogleSVG from "../../svgs/GoogleSVG";
+import AppleSVG from "../../svgs/AppleSVG";
+import EyeOpenSVG from "../../svgs/EyeOpenSVG";
 import { useMutation } from "@tanstack/react-query";
-import { signIn } from "../api/auth";
+import { signIn } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
+import LanguageDropDown from "../../components/LanguageDropDown";
+import AppContext from "../../context/AppContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { translate, language } = useTranslation();
   const navigate = useNavigate();
+  const { setApp } = useContext(AppContext);
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
-    remeberMe: "",
+    remeberMe: false,
     passwordType: "password",
   });
 
   const { mutate } = useMutation({
     mutationFn: () =>
       signIn(userInfo.email, userInfo.password, userInfo.remeberMe),
-    onSuccess: () => {},
+    onSuccess: (data) => {
+      setApp((prev) => {
+        return { ...prev, user: true };
+      });
+    },
+    onError: () => {
+      toast.error(translate(T.LOGIN_FAILED));
+    },
   });
 
   const isArabic = language === "AR";
@@ -39,15 +50,18 @@ const Login = () => {
     for (let key in userInfo) {
       if (!userInfo[key] && key !== "remeberMe") return true;
     }
-
     return false;
   };
-  return (
-    <div className="back-ground min-w-screen min-h-screen flex justify-center items-center ">
-      <div className="w-[90vw] lg:w-[55vw] h-[85vh] bg-[#20202D] rounded-[22px] overflow-hidden">
-        <div className="h-[20%]   flex flex-col items-center ">
-          <Logo />
 
+  return (
+    <div className="back-ground min-w-screen min-h-screen flex justify-center items-center">
+      <div className="w-[90vw] relative lg:w-[55vw] h-[95vh] bg-[#20202D] rounded-[22px] overflow-hidden">
+        <div className="absolute top-5 right-5">
+          <LanguageDropDown />
+        </div>
+
+        <div className="h-[20%] flex flex-col items-center">
+          <Logo />
           <WelcomeText text={translate(T.LOGIN_ACCOUNT_TEXT)} />
         </div>
         <div className="h-[80%] flex justify-center">

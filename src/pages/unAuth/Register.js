@@ -1,21 +1,23 @@
 import React, { useState } from "react";
-import Input from "../components/Input";
-import Logo from "../components/login/Logo";
-import WelcomeText from "../components/login/WelcomeText";
-import { useTranslation } from "../context/LanguageProvider";
-import { T } from "../translate";
-import LinkButton from "../components/LinkButton";
-import PrimaryButton from "../components/PrimaryButton";
-import SecondaryButton from "../components/SecondaryButton";
-import EyeSVG from "../svgs/EyeSVG";
-import EyeOpenSVG from "../svgs/EyeOpenSVG";
+import Input from "../../components/Input";
+import Logo from "../../components/login/Logo";
+import WelcomeText from "../../components/login/WelcomeText";
+import { useTranslation } from "../../context/LanguageProvider";
+import { T } from "../../translate";
+import LinkButton from "../../components/LinkButton";
+import PrimaryButton from "../../components/PrimaryButton";
+import SecondaryButton from "../../components/SecondaryButton";
+import EyeSVG from "../../svgs/EyeSVG";
+import EyeOpenSVG from "../../svgs/EyeOpenSVG";
 import { useMutation } from "@tanstack/react-query";
-import { signUp } from "../api/auth";
-import profileImage from "../assets/user_defualt.jfif";
-import RingSVG from "../svgs/RingSVG";
-import CameraSVG from "../svgs/CameraSVG";
-import TextArea from "../components/TextArea";
+import { signUp } from "../../api/auth";
+import profileImage from "../../assets/user_defualt.jfif";
+import RingSVG from "../../svgs/RingSVG";
+import CameraSVG from "../../svgs/CameraSVG";
+import TextArea from "../../components/TextArea";
 import { useNavigate } from "react-router-dom";
+
+import LanguageDropDown from "../../components/LanguageDropDown";
 const Register = () => {
   const { translate, language } = useTranslation();
   const navigate = useNavigate();
@@ -52,7 +54,11 @@ const Register = () => {
   };
   return (
     <div className=" pt-[40px] pb-[40px] back-ground min-w-screen min-h-screen flex justify-center items-center ">
-      <div className="w-[90vw] lg:w-[55vw] pt-[20px] pb-[20px]  bg-[#20202D] rounded-[22px] overflow-hidden">
+      <div className="w-[90vw] relative lg:w-[55vw] pt-[20px] pb-[20px]  bg-[#20202D] rounded-[22px] overflow-hidden">
+        <div className="absolute top-5 right-5 ">
+          <LanguageDropDown />
+        </div>
+
         <div className="h-[300px]   flex flex-col items-center ">
           <Logo />
           <WelcomeText text={translate(T.REGISTER_ACCOUNT_TEXT)} />
@@ -71,9 +77,10 @@ const Register = () => {
               <div className="w-[50%] lg:w-[30%]  aspect-square flex justify-center items-center">
                 <label
                   htmlFor="image-field"
-                  className="cursor-pointer w-[80%] aspect-square  rounded-full flex justify-center items-center relative"
+                  className=" cursor-pointer w-[80%] aspect-square  rounded-full flex justify-center items-center relative"
                 >
                   <RingSVG />
+
                   <input
                     onChange={(e) => {
                       setUserInfo({
@@ -88,11 +95,11 @@ const Register = () => {
                   <img
                     alt="User profile"
                     src={userInfo.image || profileImage}
-                    className="rounded-full aspect-square w-[80%] absolute object-cover"
+                    className="rounded-full aspect-square w-[85%] absolute object-cover"
                   />
                   <label
                     htmlFor="image-field"
-                    className="cursor-pointer absolute bottom-2 right-2 w-[50px] rounded-full flex justify-center items-center bg-[#4583D5] aspect-square border-[6px] border-[#20202D]"
+                    className="cursor-pointer absolute bottom-[5px] right-[5px] w-[50px] rounded-full flex justify-center items-center bg-[#4583D5] aspect-square border-[6px] border-[#20202D]"
                   >
                     <CameraSVG />
                   </label>

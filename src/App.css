@@ -5,3 +5,7 @@
     rgb(104, 59, 129) 100%
   );
 }
+
+body {
+  background-color: #1e1e2b;
+}

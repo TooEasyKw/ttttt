@@ -4,8 +4,8 @@ const RingSVG = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="203"
-      height="203"
+      width="100%"
+      height="100%"
       fill="none"
       viewBox="0 0 203 203"
     >

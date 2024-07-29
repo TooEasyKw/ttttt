@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "./storage";
 
 const instance = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: "http://192.168.0.137:8000",
 });
 
 instance.interceptors.request.use((config) => {
