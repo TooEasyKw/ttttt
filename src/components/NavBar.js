@@ -6,23 +6,18 @@ import { BASE_URL } from "../api";
 import { useQuery } from "@tanstack/react-query";
 
 const NavBar = ({ toggleSidebar, isOpen }) => {
-  const [orgProfile, setOrgProfile] = useState({ name: "", profilePic: "" });
-
-  const { data, error, isLoading } = useQuery({
+  const {
+    data: orgProfile,
+    error,
+    isLoading,
+  } = useQuery({
     queryKey: ["organizationProfile"],
     queryFn: getOrganizationProfile,
-    onSuccess: (data) => {
-      setOrgProfile({ name: data.username, profilePic: data.image });
-    },
-    onError: (error) => {
-      console.error("Error fetching organization profile", error);
-    },
   });
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
   return (
     <div className="w-full h-[75px] bg-[#34324C] flex justify-between items-center p-4 relative z-10">
       <button
@@ -53,7 +48,7 @@ const NavBar = ({ toggleSidebar, isOpen }) => {
 
           <div className="w-[60px] h-[60px] flex justify-center items-center rounded-full">
             <img
-              src={BASE_URL + "/" + orgProfile.profilePic}
+              src={BASE_URL + "/" + orgProfile.image}
               alt="Organization Profile"
               className="w-[55px] h-[55px] bg-[#34324C] flex justify-center items-center rounded-full"
             />
@@ -64,7 +59,7 @@ const NavBar = ({ toggleSidebar, isOpen }) => {
               isOpen ? "hidden lg:block" : "block"
             }`}
           >
-            {orgProfile.name}
+            {orgProfile.username}
           </h1>
         </div>
       </div>

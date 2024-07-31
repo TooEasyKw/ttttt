@@ -21,9 +21,13 @@ const MobileEventCard = ({
   eventDetails = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
   eventDate = "24,Aug,2024",
   orgImage = UserDeafult,
+  onClick = () => {},
 }) => {
   return (
-    <div className="w-[26rem] min-w-[26rem] bg-[#323048] relative p-[0.875rem] rounded-[0.625rem] h-[24.25rem] max-w-[75rem]   flex flex-col  gap-[0.875rem]">
+    <div
+      onClick={onClick}
+      className="w-[26rem] cursor-pointer min-w-[26rem] bg-[#323048] relative p-[0.875rem] rounded-[0.625rem] h-[24.25rem] max-w-[75rem]   flex flex-col  gap-[0.875rem]"
+    >
       <div className="h-[12.5rem] ">
         <img
           src={eventImage}

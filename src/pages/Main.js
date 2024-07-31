@@ -59,7 +59,7 @@ const Main = ({ children }) => {
 
         {isOpen && (
           <div
-            className="absolute inset-0 bg-[#00000066] z[-10] block lg:hidden"
+            className="fixed inset-0 bg-[#00000066]  block lg:hidden"
             onClick={toggleSidebar}
           ></div>
         )}

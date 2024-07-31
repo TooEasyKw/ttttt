@@ -21,9 +21,13 @@ const EventCArd = ({
   eventDetails = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
   eventDate = "28,Aug,2024",
   orgImage = UserDeafult,
+  onClick = () => {},
 }) => {
   return (
-    <div className="w-full min-w-[26rem] bg-[#323048] relative p-[0.875rem] rounded-[0.625rem] h-[24.25rem] max-w-[80.5rem]  lg:w-full flex flex-col lg:flex-row gap-[0.875rem]">
+    <div
+      onClick={onClick}
+      className="w-full cursor-pointer min-w-[26rem] bg-[#323048] relative p-[0.875rem] rounded-[0.625rem] h-[24.25rem] max-w-[80.5rem]  lg:w-full flex flex-col lg:flex-row gap-[0.875rem]"
+    >
       <div className="h-[12.5rem] lg:h-full">
         <img
           src={eventImage}

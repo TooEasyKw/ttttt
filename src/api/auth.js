@@ -73,6 +73,11 @@ const getAllEvents = async () => {
   return data;
 };
 
+const getMyEvents = async () => {
+  const { data } = await instance.get("/event/my");
+  return data;
+};
+
 const getEventById = async (eventId) => {
   const { data } = await instance.get(`/event/eventbyid/${eventId}`);
   return data;
@@ -202,6 +207,7 @@ export {
   deleteOrganization,
   createEvent,
   getAllEvents,
+  getMyEvents,
   getEventById,
   updateEvent,
   deleteEvent,

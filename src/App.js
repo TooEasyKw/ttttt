@@ -35,7 +35,7 @@ function App() {
     if (token) {
       setApp({ ...app, user: true });
     }
-  });
+  }, []);
   return (
     <LanguageProvider>
       <AppContext.Provider value={{ app, setApp }}>
@@ -55,7 +55,9 @@ function App() {
               <Route path="/rate" element={<RateVolunteer />} />
               <Route path="/edit" element={<EditEvent />} />
               <Route path="/attendance" element={<EventAttendance />} />
-              <Route path="/summary" element={<EventSummary />} />
+              <Route path="/summary/:eventId" element={<EventSummary />} />
+              <Route path="/login" element={<Navigate to="/" />} />
+              <Route path="/register" element={<Navigate to="/" />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Main>
