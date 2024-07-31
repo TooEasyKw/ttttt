@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Input from "../../components/Input";
 import Logo from "../../components/login/Logo";
 import WelcomeText from "../../components/login/WelcomeText";
@@ -18,8 +18,10 @@ import TextArea from "../../components/TextArea";
 import { useNavigate } from "react-router-dom";
 
 import LanguageDropDown from "../../components/LanguageDropDown";
+import AppContext from "../../context/AppContext";
 const Register = () => {
   const { translate, language } = useTranslation();
+  const { setApp, app } = useContext(AppContext);
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
     username: "",
@@ -37,7 +39,7 @@ const Register = () => {
   const { mutate } = useMutation({
     mutationFn: () => signUp(userInfo),
     onSuccess: () => {
-      alert("NEEJA");
+      setApp({ ...app, user: true });
     },
   });
 
@@ -85,7 +87,8 @@ const Register = () => {
                     onChange={(e) => {
                       setUserInfo({
                         ...userInfo,
-                        image: URL.createObjectURL(e.target.files[0]),
+                        image: e.target.files[0],
+                        disImage: URL.createObjectURL(e.target.files[0]),
                       });
                     }}
                     className="hidden"
@@ -94,7 +97,7 @@ const Register = () => {
                   />
                   <img
                     alt="User profile"
-                    src={userInfo.image || profileImage}
+                    src={userInfo.disImage || profileImage}
                     className="rounded-full aspect-square w-[85%] absolute object-cover"
                   />
                   <label

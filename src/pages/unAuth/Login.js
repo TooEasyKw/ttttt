@@ -36,6 +36,7 @@ const Login = () => {
     mutationFn: () =>
       signIn(userInfo.email, userInfo.password, userInfo.remeberMe),
     onSuccess: (data) => {
+      toast.success(translate(T.LOGIN_SUCCESS));
       setApp((prev) => {
         return { ...prev, user: true };
       });

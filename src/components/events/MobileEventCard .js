@@ -13,13 +13,13 @@ const profiles = [
   { image: LOGO },
   { image: LOGO },
 ];
-const EventCArd = ({
+const MobileEventCard = ({
   eventImage = EventTestImage,
   eventTitle = "Goodwill Event",
   eventLocation = "Street 8 venue, California, USA",
   volunteers = profiles,
   eventDetails = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
-  eventDate = "28,Aug,2024",
+  eventDate = "24,Aug,2024",
   orgImage = UserDeafult,
 }) => {
   return (
@@ -81,4 +81,4 @@ const EventCArd = ({
   );
 };
 
-export default EventCArd;
+export default MobileEventCard;

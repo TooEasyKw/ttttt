@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import AppContext from "./context/AppContext";
 import { LanguageProvider } from "./context/LanguageProvider";
@@ -14,10 +14,15 @@ import Home from "./pages/unAuth/Home";
 import Main from "./pages/Main";
 import HomeOrg from "./pages/Auth/HomeOrg";
 import Events from "./pages/Auth/Events";
-import Volunteers from "./pages/Auth/Volunteers";
 import CreateEvent from "./pages/Auth/CreateEvent";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import EditEvent from "./pages/Auth/EditEvent";
+import EventSummary from "./pages/Auth/EventSummary";
+import AllVolunteers from "./pages/Auth/AllVolunteers";
+import EventAttendance from "./pages/Auth/EventAttendance";
+import NotFoundPage from "./pages/unAuth/NotFoundPage";
+import RateVolunteer from "./pages/Auth/RateVolunteer";
 
 function App() {
   const [app, setApp] = useState({
@@ -25,6 +30,12 @@ function App() {
     user: false,
   });
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setApp({ ...app, user: true });
+    }
+  });
   return (
     <LanguageProvider>
       <AppContext.Provider value={{ app, setApp }}>
@@ -39,9 +50,13 @@ function App() {
             <Routes>
               <Route path="/" element={<HomeOrg />} />
               <Route path="/events" element={<Events />} />
-              <Route path="/volunteers" element={<Volunteers />} />
+              <Route path="/volunteers" element={<AllVolunteers />} />
               <Route path="/create" element={<CreateEvent />} />
-              <Route path="*" element={<Navigate to="/" />} />
+              <Route path="/rate" element={<RateVolunteer />} />
+              <Route path="/edit" element={<EditEvent />} />
+              <Route path="/attendance" element={<EventAttendance />} />
+              <Route path="/summary" element={<EventSummary />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Main>
         )}
