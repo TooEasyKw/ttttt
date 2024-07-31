@@ -58,37 +58,12 @@ const EventSummary = () => {
               Volunteer List [Pending]
             </h2>
             <div className="flex flex-col gap-4">
-              <div className="bg-[#323048] rounded-[10px] p-4 flex justify-between items-center">
-                <div>
-                  <h3 className="text-white text-lg">Goodwill Event</h3>
-                  <p className="text-[#DDD] text-sm">
-                    Street 8 venue, California, USA
-                  </p>
-                  <p className="text-[#DDD] text-sm">1.5k participants</p>
-                </div>
-                <div className="flex gap-2">
-                  <button className="bg-red-500 rounded p-2"></button>
-                  <button className="bg-red-500 rounded p-2"></button>
-                  <button className="bg-red-500 rounded p-2"></button>
-                </div>
-              </div>
-              <div className="bg-[#323048] rounded-[10px] p-4 flex justify-between items-center">
-                <div>
-                  <h3 className="text-white text-lg">Goodwill Event</h3>
-                  <p className="text-[#DDD] text-sm">
-                    Street 8 venue, California, USA
-                  </p>
-                  <p className="text-[#DDD] text-sm">1.5k participants</p>
-                </div>
-                <div className="flex gap-2">
-                  <button className="bg-red-500 rounded p-2"></button>
-                  <button className="bg-red-500 rounded p-2"></button>
-                  <button className="bg-red-500 rounded p-2"></button>
-                </div>
-              </div>
+              <VolunteerCArd />
+              <VolunteerCArd />
+              <VolunteerCArd />
             </div>
           </div>
-          <div className="w-full lg:w-1/3 flex flex-col">
+          <div className="w-full lg:w-1/3 flex max-h-[500px] flex-col">
             <h2 className="text-white text-[20px] mb-4">Event Details</h2>
             <div className="bg-[#323048] p-4 rounded-[10px] flex-grow">
               <p className="text-white">{event.description}</p>
@@ -102,7 +77,10 @@ const EventSummary = () => {
               Volunteer List [Approved]
             </h2>
             <div className="flex flex-col gap-4">
-              <div className="bg-[#323048] rounded-[10px] p-4 flex justify-between items-center">
+              <VolunteerCArd />
+              <VolunteerCArd />
+              <VolunteerCArd />
+              {/* <div className="bg-[#323048] rounded-[10px] p-4 flex justify-between items-center">
                 <div>
                   <h3 className="text-white text-lg">Goodwill Event</h3>
                   <p className="text-[#DDD] text-sm">
@@ -129,7 +107,7 @@ const EventSummary = () => {
                   <button className="bg-red-500 rounded p-2"></button>
                   <button className="bg-red-500 rounded p-2"></button>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -138,25 +116,38 @@ const EventSummary = () => {
   );
 };
 
-const VolunteerCArd = () => {
+const VolunteerCArd = ({
+  image,
+  name = "Testing",
+  onAccept = () => {},
+  onDecline = () => {},
+  onMsg = () => {},
+}) => {
   return (
-    <div className="bg-[#323048] rounded-[10px] p-4 flex justify-between items-center">
-      <div className="flex gap-5">
+    <div className="bg-[#323048] rounded-[10px] p-4 flex justify-between items-end">
+      <div className="flex gap-5 ">
         <img
-          src={eventImage}
+          src={BASE_URL + "/" + image}
           alt="Event"
           className=" h-[150px] aspect-square rounded object-cover"
         />
         <div>
-          <h3 className="text-white text-lg">Goodwill Event</h3>
-          <p className="text-[#DDD] text-sm">Street 8 venue, California, USA</p>
-          <p className="text-[#DDD] text-sm">1.5k participants</p>
+          <h3 className="text-white text-lg">{name}</h3>
         </div>
       </div>
-      <div className="flex gap-2">
-        <button className="bg-red-500 rounded p-2"></button>
-        <button className="bg-red-500 rounded p-2"></button>
-        <button className="bg-red-500 rounded p-2"></button>
+      <div className="flex gap-2 ">
+        <button
+          onClick={(_id) => onAccept(_id)}
+          className="bg-red-500 rounded p-2 h-[50px] aspect-square"
+        ></button>
+        <button
+          onClick={(_id) => onDecline(_id)}
+          className="bg-red-500 rounded p-2  h-[50px] aspect-square"
+        ></button>
+        <button
+          onClick={(_id) => onMsg(_id)}
+          className="bg-red-500 rounded p-2  h-[50px] aspect-square"
+        ></button>
       </div>
     </div>
   );
