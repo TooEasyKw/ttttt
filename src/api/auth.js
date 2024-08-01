@@ -1,3 +1,4 @@
+import { Form } from "react-router-dom";
 import instance from "./index";
 import { storeToken } from "./storage";
 
@@ -64,7 +65,18 @@ const deleteOrganization = async (organizationId) => {
 
 // Event Endpoints
 const createEvent = async (eventInfo) => {
-  const { data } = await instance.post("/event/create", eventInfo);
+  const formData = new FormData();
+  for (const key in eventInfo) {
+    if (key == "image") continue;
+    if (key == "images") {
+      eventInfo[key].forEach((image) => {
+        formData.append(key, image);
+      });
+      continue;
+    }
+    formData.append(key, eventInfo[key]);
+  }
+  const { data } = await instance.post("/event/create", formData);
   return data;
 };
 
